@@ -1,11 +1,11 @@
 import {
   requireGitHubOidc,
   sendError
-} from "./_lib/auth.js";
+} from "../lib/auth.js";
 import {
   requireSandboxId,
   vercelApi
-} from "./_lib/vercel-api.js";
+} from "../lib/vercel-api.js";
 
 export default async function handler(req, res) {
   try {
