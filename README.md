@@ -47,19 +47,16 @@ audience   = vercel-physics-intern-hobby
 The research repository stays private. ChatGPT authentication is stored only
 inside the persistent Sandbox filesystem.
 
-## After deployment
+## Production
 
-Copy the production URL, for example:
+This repository is connected directly to the Vercel project `physics-intern-hobby-controller`.
+
+Stable production alias:
 
 ```text
 https://physics-intern-hobby-controller.vercel.app
 ```
 
-and set the private research repository variable:
+The private `rubik-physics-intern` Hobby workflow uses this canonical alias directly; no controller URL secret or repository variable is required.
 
-```text
-VERCEL_PHYSICS_CONTROLLER_URL=<production-url>
-```
-
-Then run **PhysicsIntern Hobby → login**, complete the Codex device login, and
-start with **survey**.
+A lightweight **smoke** mode validates both the health endpoint and the exact GitHub OIDC trust boundary without starting a Vercel Sandbox. After smoke passes, use **login** only when the persistent Codex session must be established or refreshed, then use the research stages normally.
