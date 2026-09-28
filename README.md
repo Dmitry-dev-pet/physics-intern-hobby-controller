@@ -4,9 +4,10 @@ Minimal public Vercel controller for the private
 `Dmitry-dev-pet/rubik-physics-intern` research workspace.
 
 This repository intentionally contains **no research material and no secrets**.
-Its only job is to create/resume a persistent Vercel Sandbox and authorize
-requests coming from the exact GitHub Actions workflow in the private research
-repository.
+Its only job is to create/resume a persistent Vercel Sandbox for the Codex
+research stages and authorize requests coming from the exact GitHub Actions
+workflow in the private research repository. Google Antigravity second-opinion
+stages run directly on GitHub-hosted runners and do not use this controller.
 
 ## Deploy on Vercel Hobby
 
