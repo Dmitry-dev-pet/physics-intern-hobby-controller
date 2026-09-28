@@ -15,7 +15,21 @@ dir="$GEMINI_CLI_HOME/.gemini"
 mkdir -p "$dir"
 umask 077
 printf '%s' "$GEMINI_OAUTH_JSON" > "$dir/oauth_creds.json"
-chmod 600 "$dir/oauth_creds.json"
+cat > "$dir/settings.json" <<'JSON'
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    },
+    "toolSandboxing": false
+  },
+  "general": {
+    "enableAutoUpdate": false,
+    "enableAutoUpdateNotification": false
+  }
+}
+JSON
+chmod 600 "$dir/oauth_creds.json" "$dir/settings.json"
 `;
 
 export default async function handler(req, res) {
