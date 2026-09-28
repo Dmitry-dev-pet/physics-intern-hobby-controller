@@ -2,11 +2,11 @@ import {
   requireGitHubOidc,
   requirePost,
   sendError
-} from "./_lib/auth.js";
+} from "../lib/auth.js";
 import {
   CODEX_HOME,
   getResearchSandbox
-} from "./_lib/sandbox.js";
+} from "../lib/sandbox.js";
 
 const LOGIN = String.raw`set -euo pipefail
 export CODEX_HOME="$CODEX_HOME"
