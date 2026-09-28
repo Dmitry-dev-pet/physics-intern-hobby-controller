@@ -5,13 +5,13 @@ import {
   requireGitHubOidc,
   requirePost,
   sendError
-} from "./_lib/auth.js";
+} from "../lib/auth.js";
 import {
   CODEX_HOME,
   REPO_DIR,
   REPO_URL,
   getResearchSandbox
-} from "./_lib/sandbox.js";
+} from "../lib/sandbox.js";
 
 const MODES = new Set([
   "survey",
