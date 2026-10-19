@@ -1,0 +1,31 @@
+name: Transfer manufacturer fan CFD curve
+on:
+  push:
+    branches: [tmp/fan-heatsink-step-fetch-20261018]
+permissions:
+  contents: read
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Fetch manufacturer P-Q XLSX without modification
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          curl -fLsS --retry 2 --max-time 60 'https://support.arctic.de/products/f12-pwm-pst/techdocs/F12%20-%20PQ%20Curve%20for%20CFD.XLSX' -o 'data/ARCTIC_F12_PQ_Curve_for_CFD.xlsx'
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile,hashlib
+          p=Path('data/ARCTIC_F12_PQ_Curve_for_CFD.xlsx')
+          assert p.stat().st_size > 1000
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None and '[Content_Types].xml' in z.namelist()
+          print('VERIFIED XLSX',p.stat().st_size,hashlib.sha256(p.read_bytes()).hexdigest(),flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-arctic-f12-pq-for-cfd
+          path: data/*.xlsx
+          retention-days: 1
